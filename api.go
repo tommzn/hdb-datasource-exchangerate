@@ -35,8 +35,8 @@ func exchangeRatesFromConfig(conf config.Config) []*events.ExchangeRate {
 
 	rates := []*events.ExchangeRate{}
 	for _, rate := range conf.GetAsSliceOfMaps("exchangerate.conversions") {
-		fromCurrency, ok1 := rate["fromCurrency"]
-		toCurrency, ok2 := rate["toCurrency"]
+		fromCurrency, ok1 := rate["from"]
+		toCurrency, ok2 := rate["to"]
 		if ok1 && ok2 {
 			rates = append(rates, &events.ExchangeRate{FromCurrency: fromCurrency, ToCurrency: toCurrency})
 		}
@@ -78,7 +78,7 @@ func (client *ExchangeRateApi) requestRate(exchangeRate *events.ExchangeRate) (*
 	apiResponse := apiResponse{}
 	decodeErr := json.Unmarshal(body, &apiResponse)
 	if decodeErr != nil {
-		return nil, fmt.Errorf("Unable to process api response, reason: ", decodeErr)
+		return nil, fmt.Errorf("Unable to process api response, reason: %s", decodeErr)
 	}
 
 	if len(apiResponse.Rates) == 0 {

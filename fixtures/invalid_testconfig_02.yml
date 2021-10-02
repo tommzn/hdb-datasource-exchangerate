@@ -1,0 +1,11 @@
+
+log:
+  type: local
+  loglevel: debug
+
+exchangerate:
+  date_format: "2006-01-02"
+  conversions:
+    - from: "XXX"
+      to: "YYY"
+  

@@ -1,0 +1,14 @@
+
+log:
+  type: local
+  loglevel: debug
+
+exchangerate:
+  url: "https://api.frankfurter.app/latest"
+  date_format: "2006-01-02"
+  conversions:
+    - from: "EUR"
+      to: "USD"
+    - from: "USD"
+      to: "EUR"
+  
