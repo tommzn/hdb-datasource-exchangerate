@@ -61,6 +61,8 @@ func (suite *ExchangeRateApiTestSuite) TestGetExchangeRates() {
 	suite.True(ok)
 	suite.Len(exchangerates.Rates, 2)
 	for _, rate := range exchangerates.Rates {
+		suite.True(rate.FromCurrency == "EUR" || rate.FromCurrency == "USD")
+		suite.True(rate.ToCurrency == "EUR" || rate.ToCurrency == "USD")
 		suite.True(rate.Rate != 0)
 		suite.NotNil(rate.Timestamp)
 	}
