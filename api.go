@@ -102,9 +102,8 @@ func parseDate(date, format string) time.Time {
 	t, err := time.Parse(format, date)
 	if err == nil {
 		return t
-	} else {
-		return time.Now()
 	}
+	return time.Now()
 }
 
 // asTimeStamp converts a unix epoch timestamp to a Protobuf timestamp.
