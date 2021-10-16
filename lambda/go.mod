@@ -7,6 +7,6 @@ require (
 	github.com/tommzn/go-config v1.0.5
 	github.com/tommzn/go-log v1.0.2
 	github.com/tommzn/go-secrets v1.0.0
-	github.com/tommzn/hdb-datasource-core v1.0.3
-	github.com/tommzn/hdb-datasource-exchangerate v1.0.0
+	github.com/tommzn/hdb-datasource-core v1.0.5
+	github.com/tommzn/hdb-datasource-exchangerate v1.0.1
 )
