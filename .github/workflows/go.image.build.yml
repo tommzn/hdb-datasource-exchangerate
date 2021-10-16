@@ -1,8 +1,9 @@
 name: Image Build
 on:
-  push:
-    branches:
-      - main
+  create:
+    tags:
+      - lambda/v*
+
 jobs:
   go-build:
     name: Go Test & Binary Build
