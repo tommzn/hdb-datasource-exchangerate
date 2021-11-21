@@ -44,3 +44,6 @@ After creating a new datasource, you can fetch specified exchange rates. If anyt
 
     fmt.Printf("Exchange Rates: %d\n", len(weatherData.(events.ExchangeRates).Rates))
 ```
+
+# Links
+- [HomeDashboard Documentation](https://github.com/tommzn/hdb-docs/wiki)
