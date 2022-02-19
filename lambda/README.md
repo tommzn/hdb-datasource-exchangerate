@@ -1,4 +1,5 @@
 [![Actions Status](https://github.com/tommzn/hdb-datasource-exchangerate/actions/workflows/go.image.build.yml/badge.svg)](https://github.com/tommzn/hdb-datasource-exchangerate/actions)
+[![CircleCI](https://circleci.com/gh/tommzn/hdb-datasource-exchangerate/tree/main.svg?style=svg)](https://circleci.com/gh/tommzn/hdb-datasource-exchangerate/tree/main)
 
 # Exchange Rate Collector
 This package composes a [data collector](https://github.com/tommzn/hdb-datasource-core/collector.go) and [exchange rate data source](https://github.com/tommzn/hdb-datasource-exchangerate) to fetch excjange rates and publish it to a SQS queue.
