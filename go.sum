@@ -453,6 +453,8 @@ github.com/tommzn/hdb-datasource-core v1.0.5 h1:ByrYoPNd87xHBRd5wstbe4oL7/7/XpQk
 github.com/tommzn/hdb-datasource-core v1.0.5/go.mod h1:K+7tS/YITSjgLxNOsGpVW3DB7WS1rJK2u6vW6taICeQ=
 github.com/tommzn/hdb-datasource-core v1.2.2 h1:N9WuSIKJwXhYq3wvW2QJv4bktgsiKWLoWyx0tYS2SyY=
 github.com/tommzn/hdb-datasource-core v1.2.2/go.mod h1:K+7tS/YITSjgLxNOsGpVW3DB7WS1rJK2u6vW6taICeQ=
+github.com/tommzn/hdb-datasource-core v1.2.3 h1:rzuvlGLSAb6r/dEJKUbxCFok4TI4pQdicY8Ec+7Z+BQ=
+github.com/tommzn/hdb-datasource-core v1.2.3/go.mod h1:HIVEE0gaAyWQQBGqF8uaX5ImrTUX2RQ46yOJaaRGqdw=
 github.com/tommzn/hdb-events-go v1.0.4 h1:d0cytb3G8MvQkUN1QPVZjf3zWkpI0SWTSwrIv7gSxgE=
 github.com/tommzn/hdb-events-go v1.0.4/go.mod h1:Pi0wRugUxNO81wqM4lFoie1C6oE8zUbq4h4TjSgvBi4=
 github.com/tommzn/hdb-events-go v1.0.6 h1:rBOw8ZgIlOpR9q7KrQQw3qJwbGgdq6wBQMFQZjYv8CQ=

@@ -15,7 +15,7 @@ require (
 	github.com/tommzn/go-log v1.1.0
 	github.com/tommzn/go-secrets v1.1.1 // indirect
 	github.com/tommzn/go-utils v1.0.2 // indirect
-	github.com/tommzn/hdb-datasource-core v1.2.2
+	github.com/tommzn/hdb-datasource-core v1.2.3
 	github.com/tommzn/hdb-events-go v1.0.8
 	golang.org/x/sys v0.0.0-20220224120231-95c6836cb0e7 // indirect
 	google.golang.org/protobuf v1.27.1
