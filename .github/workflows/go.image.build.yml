@@ -5,57 +5,43 @@ on:
       - lambda/v*
 
 jobs:
+  go-test:
+    name: Go Test
+    uses:  tommzn/github-ci/.github/workflows/go.test.v2.yml@v1.0.88
+    with:
+      work-directory: './lambda'
   go-build:
-    name: Go Test & Binary Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Get Go version
-        run: echo "goversion=`egrep -i '^go [1-2][.][0-9]+$' go.mod | sed 's/go //' | sed 's/$/.x/'`" >> $GITHUB_ENV
-        working-directory: ./lambda
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.goversion }}
-      - name: Run tests
-        run: go test -v  -covermode=count ./...
-        working-directory: ./lambda
-      - name: Build Binary
-        run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -v -o build_artifact_bin
-        working-directory: ./lambda
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build_artifact_bin
-          path: ./lambda/build_artifact_bin
-          retention-days: 1
-        
-  image-build:
-    name: Build and Deploy Docker Image
+    name: Go Build
+    needs: [go-test]
+    uses:  tommzn/github-ci/.github/workflows/go.build.v2.yml@v1.0.90
+    with:
+      work-directory: './lambda'
+  ghcr-image-build:
+    name: GHRC Image Build
     needs: [go-build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Download Golang Binary
-        uses: actions/download-artifact@v2
-        with:
-          name: build_artifact_bin
-          path: lambda
-      - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
-      - name: Build Image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./lambda
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:latest
-  
+    uses:  tommzn/github-ci/.github/workflows/go.ghcr.image.v2.yml@v1.0.91
+    with:
+      work-directory: './lambda'
+    secrets:
+        cr-pat: ${{ secrets.CR_PAT }}
+  ecr-image-build:
+    name: AWS ECR Image Build
+    needs: [go-build]
+    uses:  tommzn/github-ci/.github/workflows/go.aws.ecr.image.v2.yml@v1.0.98
+    with:
+      work-directory: './lambda'
+      aws-region: eu-central-1
+    secrets:
+        iam-role: ${{ secrets.IAM_ROLE }}
+        ecr-registry-uri: ${{ secrets.ECR_REGISTRY_URI }}
+  lambda-func-update:
+    name: AWS Lambda Function Code Update
+    needs: [ecr-image-build]
+    uses:  tommzn/github-ci/.github/workflows/aws.lambda.func.update.yml@v1.0.98
+    with:
+      aws-region: eu-central-1
+    secrets:
+        iam-role: ${{ secrets.IAM_ROLE_LAMBDA }}
+        ecr-registry-uri: ${{ secrets.ECR_REGISTRY_URI }}
+        lambda-function: ${{ secrets.LAMBDA_FUNCTION }}
         
